@@ -1,0 +1,59 @@
+/* Page-sized scenes, using the same native scroll-snap interaction as the reference. */
+.scene-mode{--demo-height:30px;--chrome-height:108px;scroll-snap-type:y mandatory;scroll-padding-top:var(--chrome-height);scroll-padding-bottom:0}
+.scene-mode body{padding-top:var(--chrome-height)}
+.scene-mode .demo-bar{position:fixed;inset:0 0 auto;z-index:25}
+.scene-mode header{position:fixed;inset:var(--demo-height) 0 auto;z-index:25}
+.scene-mode .scene{scroll-snap-align:start;scroll-snap-stop:always;min-height:calc(100svh - var(--chrome-height));width:100%;margin:0;position:relative;display:flex;flex-direction:column;justify-content:center;padding:42px 0 68px;border-top:0}
+.scene-mode .scene-content{flex-shrink:0}
+.scene-mode .scene.is-current>.scene-content{animation:scene-arrive .65s cubic-bezier(.2,.65,.3,1) both}
+@keyframes scene-arrive{from{opacity:.35;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.scene-mode .hero{padding-top:25px;padding-bottom:65px}
+.scene-mode .hero>.scene-content{flex:1;display:flex;flex-direction:column}
+.scene-mode .hero-grid{flex:1;padding:28px 0;gap:45px}
+.scene-mode .paper-art{height:clamp(280px,45svh,470px)}
+.scene-mode .hero h1{font-size:clamp(42px,5vw,72px)}
+.scene-mode .hero-copy{margin:22px 0 27px}
+.scene-mode .hero-bottom{padding:14px 0}
+.scene-mode .curriculum .section-line{margin-bottom:25px}
+.scene-mode .chapter-heading{margin-bottom:30px}
+.scene-mode .process{margin-top:25px}
+.scene-mode .lab-scene .lab{margin-top:0}
+.scene-mode .lab-scene .lab-title{margin-bottom:20px}
+.scene-mode .scene .lab{padding:27px 32px}
+.scene-mode .scene .terms{gap:40px}
+.scene-mode #ch2 .terms{margin-top:50px}
+.scene-mode #ch2:after{content:'기본 개념 다음에는, 직접 실험해 보세요. ↓';display:block;width:min(1240px,calc(100% - 96px));margin:55px auto 0;font-size:12px;color:var(--muted)}
+.scene-mode .grain-view{margin-top:25px}
+.scene-mode .print-lab{margin-top:0}
+.scene-mode .print-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}
+.scene-mode .print-preview{height:300px;aspect-ratio:auto}
+.scene-mode .print-preview b{font-size:48px}
+.scene-mode .finishes{margin-top:50px}
+.scene-mode #finishing-scene{background:#253c30}
+.scene-mode #finishing-scene .finishes article{border-top:1px solid #6b7c6c;padding-top:25px}
+.scene-mode #finishing-scene .finishes h3{font-size:28px}
+.scene-mode #finishing-scene .finishes p{font-size:15px}
+.scene-mode #ch3 .swatch{height:clamp(160px,26svh,240px)}
+.scene-mode #ch3 .material-grid h3{margin-top:17px}
+.scene-mode #ch3 .note{margin-top:16px}
+.scene-mode footer.scene>.scene-content{display:block}
+.scene-mode footer.scene{background:#e7e9dd}
+.scene-mode footer .brand{font-size:32px}
+.scene-mode footer .brand span{font-size:17px}
+.scene-mode footer>div>p{font-size:26px;margin:35px 0 65px}
+.scene-mode footer>div>div{display:flex;justify-content:space-between;gap:18px;font-size:11px;color:var(--muted)}
+#scene-controls{position:fixed;bottom:0;left:0;right:0;z-index:24;display:flex;align-items:center;justify-content:space-between;gap:20px;height:48px;padding:0 28px;background:rgba(245,242,233,.96);border-top:1px solid #cdcfc2;color:var(--ink);backdrop-filter:blur(8px)}
+.scene-hint{font-size:9px;letter-spacing:.13em}
+#scene-label{font-size:11px;flex:1;text-align:center;color:var(--muted)}
+.scene-pager{display:flex;align-items:center;gap:14px}
+.scene-pager button{background:transparent;border:1px solid #bdc6b3;border-radius:50%;width:30px;height:30px;line-height:1;font-size:16px;padding:0}
+.scene-pager button:hover:not(:disabled){background:var(--green);color:white}
+.scene-pager button:disabled{opacity:.25;cursor:default}
+#scene-count{font-size:11px;font-variant-numeric:tabular-nums;min-width:43px;text-align:center}
+[data-scene-theme=dark] #scene-controls{background:rgba(37,60,48,.96);border-color:#6b7c6c;color:#f0f0e3}
+[data-scene-theme=dark] #scene-label{color:#becabc}
+@media(max-width:900px){.scene-mode .scene{padding:36px 0 68px}.scene-mode .hero-grid{gap:24px}.scene-mode #ch2:after{width:calc(100% - 48px)}.scene-mode .scene .lab{padding:25px}.scene-mode .print-preview{height:320px}.scene-mode .print-preview b{font-size:40px}}
+@media(max-width:620px){.scene-mode .scene{padding:30px 0 70px}.scene-mode .hero{padding-top:23px}.scene-mode .hero-grid{grid-template-columns:1fr;gap:22px;padding:25px 0}.scene-mode .hero h1{font-size:42px}.scene-mode .hero-copy{margin:20px 0 24px}.scene-mode .paper-art{height:300px}.scene-mode .hero-grid>div:first-child{position:relative}.scene-mode .hero-bottom{font-size:7px}.scene-mode .hero-bottom a{display:none}.scene-mode .chapter-heading{margin-bottom:28px}.scene-mode .scene .lab{padding:22px 18px}.scene-mode #ch2 .terms{margin-top:30px}.scene-mode #ch2:after{width:calc(100% - 36px);margin-top:25px}.scene-mode .scene .terms{gap:15px}.scene-mode .print-grid{grid-template-columns:1fr}.scene-mode .print-preview{height:300px}.scene-mode .print-preview b{font-size:49px}.scene-mode #ch3 .swatch{height:170px}.scene-mode .calculator,.scene-mode .cut-grid{gap:25px}.scene-mode #finishing-scene .finishes{margin-top:30px}.scene-mode #finishing-scene .finishes h3{font-size:23px}.scene-mode #finishing-scene .finishes p{font-size:13px}#scene-controls{padding:0 17px;height:48px;gap:10px}.scene-hint{display:none}#scene-label{text-align:left;font-size:10px}.scene-pager{gap:10px}.scene-mode footer>div>div{flex-direction:column}.scene-mode footer .brand{font-size:26px}.scene-mode footer .brand span{font-size:13px}.scene-mode footer>div>p{font-size:20px;margin:35px 0 50px}}
+@media(max-width:620px){.scene-mode .hero{padding:20px 0 60px}.scene-mode .hero-grid{padding:20px 0;gap:18px}.scene-mode .hero h1{margin-bottom:0}.scene-mode .hero-copy{font-size:13px;margin:16px 0 20px}.scene-mode .paper-art{height:clamp(160px,26svh,230px)}.scene-mode .hero .s3 b{font-size:60px;margin-top:24px}.scene-mode .hero .sheet{padding:14px}.scene-mode .hero-bottom{display:none}}
+@media(prefers-reduced-motion:reduce){.scene-mode{scroll-behavior:auto}.scene-mode .scene.is-current>.scene-content{animation:none}}
+@media print{.scene-mode{scroll-snap-type:none}.scene-mode body{padding:0}.scene-mode header,.scene-mode .demo-bar,#scene-controls,.progress{display:none}.scene-mode .scene{min-height:0;page-break-before:always;padding:20px 0}.scene-mode .scene>.scene-content{animation:none;transform:none;opacity:1}}

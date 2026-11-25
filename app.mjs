@@ -2,7 +2,6 @@ import {weight,cut} from './core.mjs';
 const $=id=>document.getElementById(id);
 const toc=$('toc');$('menu').addEventListener('click',()=>{toc.showModal();$('menu').setAttribute('aria-expanded','true')});
 $('close-menu').addEventListener('click',()=>toc.close());toc.addEventListener('close',()=>$('menu').setAttribute('aria-expanded','false'));toc.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toc.close()));
-function progress(){const max=document.documentElement.scrollHeight-innerHeight;$('progress').style.width=`${max>0?scrollY/max*100:0}%`;}addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress);progress();
 const fmt=(n,d=2)=>n.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});
 function updateWeight(){const valid=$('weight-form').checkValidity();const r=valid?weight(+$('gsm').value,+$('width').value,+$('height').value,+$('quantity').value):null;$('one-weight').textContent=r?`${fmt(r.sheet)} g`:'—';$('total-weight').textContent=r?`${fmt(r.total)} kg`:'—';$('weight-error').textContent=r?'':'규격과 평량은 양수, 장수는 1 이상의 정수로 입력해 주세요.';}
 $('gsm-range').addEventListener('input',()=>{$('gsm').value=$('gsm-range').value;updateWeight()});$('gsm').addEventListener('input',()=>{$('gsm-range').value=$('gsm').value});
@@ -19,3 +18,5 @@ const questions=[['평량 150 g/㎡의 의미는 무엇일까요?',['종이 1장
 questions.forEach(([q,opts],i)=>{const f=document.createElement('fieldset');f.innerHTML=`<legend>${String(i+1).padStart(2,'0')}. ${q}</legend><div class="quiz-options">${opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}" required>${o}</label>`).join('')}</div><p class="explanation" id="explanation-${i}" hidden></p>`;$('questions').append(f)});
 $('quiz-form').addEventListener('submit',e=>{e.preventDefault();let score=0;questions.forEach(([,opts,answer,explain],i)=>{const chosen=$('quiz-form').querySelector(`input[name=q${i}]:checked`);const correct=+chosen.value===answer;if(correct)score++;const el=$('explanation-'+i);el.hidden=false;el.className='explanation'+(correct?'':' wrong');el.textContent=`${correct?'정답':'다시 살펴보세요'} · ${opts[answer]} — ${explain}`});$('quiz-result').textContent=`5문제 중 ${score}문제 정답입니다. ${score===5?'모두 이해하셨습니다!':'해설을 확인하고 다시 도전해 보세요.'}`;});
 $('quiz-reset').addEventListener('click',()=>{$('quiz-form').reset();document.querySelectorAll('.explanation').forEach(el=>el.hidden=true);$('quiz-result').textContent='';$('quiz-form').querySelector('input').focus()});
+import {initScenes} from './scenes.mjs';
+initScenes();
